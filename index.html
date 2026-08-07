@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>カコク大からの脱出 ～旭台キャンパス編～</title>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<header class="hero">
+<div class="hero-inner">
+<p class="eyebrow">生成AIハンズオン</p>
+<h1>カコク大からの脱出<br/><span>～旭台キャンパス編～</span></h1>
+<div class="hero-actions">
+<a class="btn primary" href="#missions">ミッションを開始する</a>
+<button class="btn ghost" id="resetProgress" type="button">最初からやり直す</button>
+</div>
+</div>
+</header>
+<main id="mainContent">
+<section class="section overview" id="missions">
+<div class="cards"><article class="mission-card story-card open" data-card="story" id="openingStory">
+<div class="story-card-head">
+<span class="stamp">済</span>
+<span class="num">STORY</span>
+<span class="title">カコク大からの脱出</span>
+
+</div>
+<div class="card-body">
+<h3 class="section-heading">ストーリー</h3>
+<p>ここは、金沢国際酪農大学 旭台キャンパス。</p>
+<p>かつてこのキャンパスは、穏やかな牧草地と、白い牛乳と、落ち着いた事務室に囲まれた、たいへん働きやすい職場でした。<br/>この大学のキャッチコピーは、「未来を、育てる。」。</p>
+<p>職員や、ここを目指す就活生たちは、この大学を親しみを込めてこう呼んでいました。</p>
+<blockquote>「ラク大」と。</blockquote>
+<p>しかし、時代は変わりました。</p>
+<p>海外から届く問い合わせ。<br/>突然必要になる広報画像。<br/>前任者が残した、よく分からないExcel。<br/>次々と届く照会、資料作成、確認依頼。</p>
+<p>気がつけば、かつてのラク大は、いつしかこう呼ばれるようになっていました。</p>
+<blockquote>「カコク大」と。</blockquote>
+<p>このままではいけません。<br/>旭台キャンパスを、もう一度ラク大へ近づけるため、<br/>本日、皆さんには生成AIを相棒として、いくつかの業務上のミッションに挑戦していただきます。</p>
+<p>まずは、Copilotエージェントを開いてください。</p>
+<p><a class="btn copilot-link" href="https://m365.cloud.microsoft/chat/?titleId=T_a6e3a53f-8e12-74f1-c00e-4edec8a95a76&amp;source=embedded-builder" rel="noopener" target="_blank">カコク大のCopilotくんを開く</a></p>
+<p>このあと、各部署から順番に依頼が届きます。<br/>回答は、それぞれのMISSIONの提出フォームから提出してください。</p>
+<p>それでは、カコク大からの脱出を始めましょう。</p>
+<label class="done story-done"><input id="storyCheck" type="checkbox"/> メッセージを確認しました</label></div>
+</article>
+<article class="mission-card" data-card="m1" hidden="">
+<button aria-expanded="false" class="card-toggle" type="button">
+<span class="stamp">済</span>
+<span class="num">MISSION 1</span>
+<span class="title">異国からのSOS</span>
+
+</button>
+<div class="card-body">
+<h3 class="section-heading">ストーリー</h3>
+<p>入試係に、中国語で書かれた難解なメールが届いた。</p>
+<p>文字数は多く、翻訳サイトにかけても要点がつかみにくい。担当者は画面を見つめたまま、何を聞かれているのか分からず頭を抱えている。</p>
+<p>あなたはふと思う。</p>
+<blockquote>「そうだ、生成AIを使ってみよう」</blockquote>
+<p>まずはこのメールの正体を明らかにしよう。</p>
+<h3 class="section-heading">やること</h3>
+<ul>
+<li>メール本文の日本語要約を作成する</li>
+<li>問い合わせ事項を箇条書きで整理する</li>
+</ul>
+<details class="fold support-material">
+<summary>メール本文</summary>
+<div class="fold-content">
+
+<div class="copy-box">
+<button class="copy-btn" type="button">コピー</button>
+<pre><code>咨詢升學相關事項
+
+老師您好不好意思突然郵件本人目前京华现代农业大学现代农业学院智慧农业专业學生預計2027年畢業最近查閱金澤國際酪農大學資料對貴校酪農學乳品科學動物生產永續農業方向比較感興趣未來有報考想法但是日本大學院制度與中國不太一樣很多地方沒有了解清楚
+
+目前想知道報考前是否必須提前聯繫研究室教授如果需要的話應在哪裡查看教授資訊研究方向招生情況初次郵件是否需要研究計畫或者僅自我介紹即可另外本人日語能力有限如使用英文聯繫是否沒有問題
+
+還有入試是否可以海外實施還是必須赴日參加材料方面例如成績單在讀證明預畢業證明語言成績推薦信個人陳述等是否均需要提前準備國際學生獎學金學費減免宿舍保障是否可以申請
+
+第一次考慮赴日升學程序不是非常清楚如郵件發送錯誤麻煩轉告相關部門十分感謝
+
+王子昂
+京华现代农业大学
+现代农业学院 智慧农业专业
+wangziang@example.com</code></pre>
+</div>
+</div>
+</details>
+<details class="fold">
+<summary>ヒント</summary>
+<div class="fold-content">
+<p class="notice">生成AIに入力する前に、氏名・メールアドレスなど、個人情報にあたる部分を取り除きましょう。この課題では、メール末尾の署名部分を削除すれば十分です。</p>
+<p>翻訳だけで終わらせず、「何を聞かれているか」が分かる形に整理すると、次の担当者が確認しやすくなります。</p>
+<div class="copy-box">
+<button class="copy-btn" type="button">コピー</button>
+<pre><code>以下は、海外の学生から届いた中国語の問い合わせメールです。
+
+大学事務職員として対応するために、次の形式で整理してください。
+
+1. 日本語での要約
+2. 問い合わせ事項の箇条書き
+
+返信文は作成しなくてよいです。
+資料にない制度や条件は断定しないでください。
+
+【メール本文】
+（ここに署名部分を削除した本文を貼り付ける）</code></pre>
+</div>
+</div>
+</details>
+<details class="fold">
+<summary>Extra MISSION</summary>
+<div class="fold-content">
+<p>今回の対応をもとに、今後同様の外国語問い合わせが届いたときに使える「確認事項チェックリスト」を作成しよう。</p>
+<p>個人情報を削除しているか、問い合わせ内容を日本語で要約できているか、学生が知りたいことを項目ごとに分けられているかを確認できる形にしよう。</p>
+</div>
+</details>
+<div class="submit-box" data-submit-box="m1"><h3 class="section-heading">提出</h3><p>作成した内容をFormsに提出してください。送信後、次に進むためのキーワードが表示されます。</p><a class="btn form-link" href="https://forms.cloud.microsoft/r/WNFLUzhzgg" rel="noopener" target="_blank">MISSION 1 提出フォームを開く</a><p class="notice">Forms送信後に表示されるキーワードを入力してください。</p><label class="keyword-label" for="m1Keyword">MISSION1 キーワード</label><div class="keyword-row"><input autocomplete="off" id="m1Keyword" placeholder="キーワードを入力" type="text"/><button class="keyword-button" id="m1Button" type="button">確認</button></div><p class="keyword-error" hidden="" id="m1Error" role="alert">キーワードが違うようです。Forms送信後の表示を確認してください。</p><p class="keyword-ok" hidden="" id="m1Ok">クリアしました。次のミッションへ進んでください。</p></div>
+</div>
+</article>
+<article class="mission-card" data-card="m2" hidden="">
+<button aria-expanded="false" class="card-toggle" type="button">
+<span class="stamp">済</span>
+<span class="num">MISSION 2</span>
+<span class="title">鶴の一声</span>
+
+</button>
+<div class="card-body">
+<h3 class="section-heading">ストーリー</h3>
+<p>企画広報係に、理事から突然の依頼が届いた。</p>
+<p>オープンキャンパスで使うポスター画像を作成してほしい。ただのキャンパス写真などではなく、受験生に「この大学で学んでみたい」と思ってもらえるような、明るく印象に残るビジュアルにしたい、とのことである。</p>
+<p>さらに厄介なことに、本学が酪農大学であることがわかるよう、「牛乳を飲んでいる人物」「建物」「牛」はかならず含めてほしいそうだ。</p>
+<p>しかし、外注する時間はない。職員の中に、すぐにポスター用のイラストを描ける人もいない。担当者は、過去の写真素材フォルダを開いたまま、どれも決め手に欠けると頭を抱えている。</p>
+<p>文字入れは後から行うため、必要なのはポスターの土台となる画像である。</p>
+<p>通りかかったあなたは、ふと思う。</p>
+<blockquote>「生成AIを使えば、ポスターに使えるビジュアル案を作れるのではないか」</blockquote>
+<p>生成AIを使って、学生募集ポスター用の画像案を作成しよう。</p>
+<h3 class="section-heading">やること</h3>
+<ul>
+<li>学生募集ポスターに使える画像案を1点作成する</li>
+<li>どのような受験生に向けた画像か説明する</li>
+<li>その画像でどのような印象を与えたいか説明する</li>
+</ul>
+<p>画像内に文字を入れる必要はありません。</p>
+<p class="notice">必須条件として、「牛乳を飲んでいる人物」「建物」「牛」を必ず画像に入れてください。</p>
+<details class="fold">
+<summary>ヒント</summary>
+<div class="fold-content">
+<p>画像生成AIには、「何を描くか」だけでなく、「何に使う画像か」「どんな雰囲気にしたいか」「画像に入れてほしい要素」「入れないでほしいもの」も伝えると、目的に合った画像になりやすくなります。</p>
+<div class="copy-box">
+<button class="copy-btn" type="button">コピー</button>
+<pre><code>学生募集イベントで用いるポスター用の画像を生成してください。
+文字入れは後から行うので、画像内に文字は入れないでください。
+以下を踏まえて生成してください。
+
+・牛乳を飲んでいる人物（必須）
+・牛（必須）
+・建物（必須）
+・青空
+・現代的な校舎
+・広い牧草地
+・学びや成長を感じる雰囲気
+・受験生に向けた明るい印象
+・ポスターに使いやすい、余白のある構図</code></pre>
+</div>
+<p>上の例をそのまま使っても構いませんが、雰囲気や要素を変えて、自分なりのポスター画像にしてみましょう。</p>
+</div>
+</details>
+<details class="fold">
+<summary>Extra MISSION</summary>
+<div class="fold-content">
+<p>時間が余った方は、好きなテーマで画像生成を試してみてください。</p>
+<p>同じテーマで雰囲気を変える、別の画風にする、構図を変えるなど、自由に試して構いません。提出は不要です。</p>
+</div>
+</details>
+<div class="submit-box" data-submit-box="m2"><h3 class="section-heading">提出</h3><p>作成した内容をFormsに提出してください。送信後、次に進むためのキーワードが表示されます。</p><a class="btn form-link" href="https://forms.cloud.microsoft/r/Ts60zNDC10" rel="noopener" target="_blank">MISSION 2 提出フォームを開く</a><p class="notice">Forms送信後に表示されるキーワードを入力してください。</p><label class="keyword-label" for="m2Keyword">MISSION2 キーワード</label><div class="keyword-row"><input autocomplete="off" id="m2Keyword" placeholder="キーワードを入力" type="text"/><button class="keyword-button" id="m2Button" type="button">確認</button></div><p class="keyword-error" hidden="" id="m2Error" role="alert">キーワードが違うようです。Forms送信後の表示を確認してください。</p><p class="keyword-ok" hidden="" id="m2Ok">クリアしました。次のミッションへ進んでください。</p></div>
+</div>
+</article>
+<article class="mission-card" data-card="m3" hidden="">
+<button aria-expanded="false" class="card-toggle" type="button">
+<span class="stamp">済</span>
+<span class="num">MISSION 3</span>
+<span class="title">前任者の遺産</span>
+
+</button>
+<div class="card-body">
+<h3 class="section-heading">ストーリー</h3>
+<p>総務企画係に、全学照会の回答を取りまとめる業務が舞い込んだ。</p>
+<p>担当者の手元には、Formsから出力された回答CSVと、前任者が残したExcelファイルがある。どうやらこのExcelを使えば、回答CSVを提出用の一覧表に整形できるらしい。</p>
+<p>しかし、引継ぎメモは最低限しか残っていない。どのマクロをどの順番で実行するのか、途中でどのシートを確認すればよいのか、担当者は分からずに手が止まっている。</p>
+<p>しかも、このExcelは完全自動ではないようだ。</p>
+<p>あなたは、前任者Excelを見つめながらふと思う。</p>
+<blockquote>「このExcelの構造やマクロを、生成AIに読み解いてもらえば、使い方を復元できるのではないか」</blockquote>
+<p>前任者の遺産を解読し、生成AIを相棒に、提出用ファイルを作成しよう。</p>
+<h3 class="section-heading">やること</h3>
+<ul>
+<li>前任者が残したExcelファイルの使い方を読み解く</li>
+<li>Forms出力CSVを取り込み、必要な手作業確認を行う</li>
+<li>提出用Excelファイルを出力する</li>
+</ul>
+<details class="fold">
+<summary>使用ファイル</summary>
+<div class="fold-content">
+<p>以下のファイルを使用してください。</p>
+<div aria-label="MISSION 3 使用ファイル" class="file-boxes">
+<a class="file-box" download="" href="./照会回答整形ツール.xlsm">
+<span class="file-icon">Excel</span>
+<span class="file-name">照会回答整形ツール.xlsm</span>
+<span class="file-note">前任者が残した半自動Excelツール</span>
+</a>
+<a class="file-box" download="" href="./Formから_照会回答.csv">
+<span class="file-icon">CSV</span>
+<span class="file-name">Formから_照会回答.csv</span>
+<span class="file-note">Formsから出力された回答CSV</span>
+</a>
+</div>
+</div>
+</details>
+<details class="fold">
+<summary>ヒント</summary>
+<div class="fold-content">
+<ol>
+<li>まずは、Excelのシート構成とマクロ名をCopilotに説明してもらいましょう。</li>
+<li>マクロを実行して止まった場合は、表示されたメッセージを手がかりに、中間シートを確認しましょう。</li>
+<li>このExcelでは、すべてをマクロが自動で判断するわけではありません。人間が確認する列があります。今回は研修ですので、あなたの裁量で選択いただいてかまいません。</li>
+</ol>
+<p>提出用ファイル名の形式は、<code>全学照会回答一覧_提出用_yyyymmdd_hhnnss.xlsx</code> です。</p>
+</div>
+</details>
+<details class="fold">
+<summary>Extra MISSION</summary>
+<div class="fold-content">
+<p>このExcelを次の担当者が使いやすいように、Wordで操作手順書を作成しよう。</p>
+<p>余裕があれば、手作業をさらに減らすための改善案も提案しよう。</p>
+</div>
+</details>
+<div class="submit-box" data-submit-box="m3"><h3 class="section-heading">提出</h3><p>作成した内容をFormsに提出してください。送信後、次に進むためのキーワードが表示されます。</p><a class="btn form-link" href="https://forms.cloud.microsoft/r/HQWS6Lz4M9" rel="noopener" target="_blank">MISSION 3 提出フォームを開く</a><p class="notice">Forms送信後に表示されるキーワードを入力してください。</p><label class="keyword-label" for="m3Keyword">MISSION3 キーワード</label><div class="keyword-row"><input autocomplete="off" id="m3Keyword" placeholder="キーワードを入力" type="text"/><button class="keyword-button" id="m3Button" type="button">確認</button></div><p class="keyword-error" hidden="" id="m3Error" role="alert">キーワードが違うようです。Forms送信後の表示を確認してください。</p><p class="keyword-ok" hidden="" id="m3Ok">クリアしました。次のミッションへ進んでください。</p></div>
+</div>
+</article>
+<article class="mission-card final-card" data-card="final" hidden="" id="finalMission">
+<button aria-expanded="false" class="card-toggle" type="button">
+<span class="num">FINAL MISSION</span>
+<span class="title">謎のメッセージ</span>
+
+</button>
+<div class="card-body">
+<h3 class="section-heading">ストーリー</h3>
+<p>3つのミッションを乗り越え、旭台キャンパスのカコク業務は少しずつ整理されてきた。</p>
+<p>そのとき、理事から謎のメッセージが届いた。</p>
+<p>開いてみると、そこに書かれていたのは意味不明な英数字の羅列だった。</p>
+<p>普通に読んでも、何を伝えたいのか分からない。しかし、どうやらこれは暗号のようだ。</p>
+<p>生成AIを使ってこの文字列を解析し、脱出に必要なキーワードを見つけよう。</p>
+<h3 class="section-heading">やること</h3>
+<ul><li>脱出キーワードを見つける</li></ul>
+<details class="fold support-material">
+<summary>謎のメッセージ</summary>
+<div class="fold-content">
+
+<div class="copy-box mystery-message">
+<button class="copy-btn" type="button">コピー</button>
+<pre><code>44CQ55CG5LqL44GL44KJ44Gu6KyO44Gu44Oh44OD44K744O844K444CRCuOBk+OBruaal+WPt+OCkuiqreOBv+ino+OBhOOBn+OCieOAgeiEseWHuuOCreODvOODr+ODvOODieOBoOOBkeOCkuWbnuetlOOBl+OBpuOBj+OBoOOBleOBhOOAggoK6ISx5Ye644Kt44O844Ov44O844OJ77ya44Op44Kv5aSn6LW35YuV</code></pre>
+</div>
+</div>
+</details>
+<div aria-label="脱出キーワード入力欄" class="escape-box">
+<label for="escapeKeyword">脱出キーワード</label>
+<div class="escape-row">
+<input autocomplete="off" id="escapeKeyword" placeholder="キーワードを入力" type="text"/>
+<button class="escape-button" id="escapeButton" type="button">脱出</button>
+</div>
+<p class="escape-error" hidden="" id="escapeError" role="alert">キーワードが違うようです。謎のメッセージをもう一度確認してください。</p>
+</div>
+<details class="fold">
+<summary>ヒント</summary>
+<div class="fold-content">
+<p>この文字列は、そのまま読むための文章ではありません。暗号のように、別の形に変換されている可能性があります。</p>
+<div class="copy-box">
+<button class="copy-btn" type="button">コピー</button>
+<pre><code>以下は理事から届いた謎の英数字の羅列です。
+
+暗号のように見えます。
+内容を読み解き、脱出に必要なキーワードを見つけてください。
+
+【謎のメッセージ】
+（ここに貼り付け）</code></pre>
+</div>
+</div>
+</details>
+</div>
+</article>
+</div>
+</section>
+</main>
+<section class="success-screen" hidden="" id="successScreen">
+<div aria-labelledby="successTitle" aria-modal="true" class="success-card" role="dialog">
+<button aria-label="閉じる" class="success-close" id="closeSuccess" type="button">×</button>
+<p class="eyebrow">ESCAPE COMPLETE</p>
+<h2 id="successTitle">脱出成功です！</h2>
+<p>皆さんは、生成AIを使って、外国語の問い合わせから要点を整理し、限られた情報から新しいアイデアを形にし、前任者が残した業務ファイルを読み解くことができました。</p>
+<p>大切なのは、生成AIに仕事を丸投げすることではありません。何を知りたいのか、何を任せるのか、最後に何を確認するのかを、人間が考えながら使うことです。</p>
+<p>生成AIは、過酷な業務から脱出するための魔法ではありません。けれど、人間と一緒に考え、作業の見通しをよくし、次の一歩を踏み出しやすくしてくれる相棒です。</p>
+<p>旭台キャンパスは、今日ここから「ラク大」への第一歩を踏み出します。</p>
+<hr/>
+<p class="thanks">生成AI研修は以上です。ご参加ありがとうございました。</p>
+<a class="ending-link" href="ending.html">エンディングを見る</a>
+</div>
+</section>
+<footer>
+<p>カコク大からの脱出 ～旭台キャンパス編～ / 生成AIハンズオン</p>
+</footer>
+<script>window.KAKOKU_MISSION_KEYWORDS_B64 = {"m1": "6YWq6L6y", "m2": "5pyq5p2l44KS6IKy44Gm44KL", "m3": "5pet5Y+w", "final": "44Op44Kv5aSn6LW35YuV"};</script>
+<script src="script.js"></script>
+</body>
+</html>
