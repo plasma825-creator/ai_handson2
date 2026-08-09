@@ -1,152 +1,114 @@
- :root {
-  --bg: #08090f;
-  --text: #fff7ed;
-  --muted: #f8d8a8;
-  --gold: #f59e0b;
+:root {
+  --bg: #070607;
+  --text: #fff8eb;
+  --muted: #e7c894;
+  --gold: #c9923f;
+  --gold2: #f1d79f;
+  --panel: rgba(28, 20, 16, .72);
 }
+
 * { box-sizing: border-box; }
+
 body {
   margin: 0;
   min-height: 100vh;
   font-family: "Yu Gothic", "游ゴシック", system-ui, sans-serif;
   background:
-    radial-gradient(circle at 20% 0%, rgba(245, 158, 11, .25), transparent 34rem),
-    radial-gradient(circle at 85% 80%, rgba(59, 130, 246, .18), transparent 34rem),
-    var(--bg);
+    radial-gradient(circle at 20% 5%, rgba(201, 146, 63, .28), transparent 32rem),
+    radial-gradient(circle at 88% 88%, rgba(92, 54, 28, .48), transparent 34rem),
+    linear-gradient(135deg, #080607, #17100d 58%, #090707);
   color: var(--text);
 }
+
 .ending-page {
   min-height: 100vh;
   display: grid;
   place-items: center;
   padding: clamp(12px, 2.6vw, 36px);
 }
+
 .opening-panel {
   width: min(920px, 100%);
   padding: clamp(32px, 7vw, 72px);
-  border: 1px solid rgba(245, 158, 11, .42);
+  border: 1px solid rgba(201, 146, 63, .46);
   border-radius: 32px;
-  background: linear-gradient(180deg, rgba(15, 23, 42, .88), rgba(30, 41, 59, .72));
-  box-shadow: 0 34px 90px rgba(0,0,0,.34);
+  background:
+    linear-gradient(180deg, rgba(44, 30, 22, .92), rgba(18, 13, 12, .84)),
+    repeating-linear-gradient(135deg, rgba(255,255,255,.035) 0 1px, transparent 1px 10px);
+  box-shadow: 0 34px 90px rgba(0,0,0,.38);
   text-align: center;
 }
+
 .eyebrow {
-  color: var(--gold);
+  margin: 0;
+  color: var(--gold2);
   font-weight: 900;
   letter-spacing: .14em;
   font-size: .84rem;
 }
+
 h1, h2 { margin: 0; line-height: 1.15; }
 h1 { font-size: clamp(2.4rem, 8vw, 5.3rem); }
 .opening-panel p { font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.8; }
+
 .start-button {
   margin-top: 22px;
   padding: 15px 30px;
   border: 0;
   border-radius: 999px;
-  background: var(--gold);
-  color: #1f1300;
+  background: linear-gradient(180deg, #f4d18c, #c9923f);
+  color: #221306;
   font-size: 1.08rem;
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 0 16px 30px rgba(245,158,11,.28);
+  box-shadow: 0 16px 30px rgba(201,146,63,.28);
 }
+
 .note { color: var(--muted); font-size: .92rem !important; }
+
 .stage {
-  width: min(1280px, 100%);
-  min-height: min(82vh, 850px);
+  width: min(1320px, 100%);
+  min-height: min(84vh, 870px);
   position: relative;
   overflow: hidden;
   border-radius: 30px;
-  border: 1px solid rgba(245, 158, 11, .34);
-  background: #05060a;
-  box-shadow: 0 30px 100px rgba(0,0,0,.5);
+  border: 1px solid rgba(201, 146, 63, .42);
+  background: #050404;
+  box-shadow: 0 30px 100px rgba(0,0,0,.54);
 }
+
 .stage::before {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(0,0,0,.34), transparent 20%, transparent 80%, rgba(0,0,0,.34)),
-    radial-gradient(circle at 50% 20%, rgba(245,158,11,.18), transparent 32rem);
+    linear-gradient(90deg, rgba(0,0,0,.45), transparent 22%, transparent 78%, rgba(0,0,0,.45)),
+    radial-gradient(circle at 50% 22%, rgba(201,146,63,.17), transparent 32rem),
+    linear-gradient(180deg, rgba(255,255,255,.04), transparent 18%, transparent 82%, rgba(0,0,0,.26));
   pointer-events: none;
   z-index: 2;
 }
+
 .scene {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  padding: clamp(24px, 4vw, 54px);
+  padding: clamp(20px, 3.2vw, 44px);
   text-align: center;
   opacity: 0;
   transform: translateY(18px) scale(.99);
-  transition: opacity .9s ease, transform .9s ease;
+  transition: opacity .82s ease, transform .82s ease;
 }
+
 .scene.active { opacity: 1; transform: translateY(0) scale(1); }
 .scene[hidden] { display: none; }
-.title-card {
-  position: relative;
-  z-index: 3;
-  padding: clamp(28px, 5vw, 54px) clamp(34px, 6vw, 72px);
-  border-radius: 28px;
-  background: rgba(0,0,0,.35);
-  border: 1px solid rgba(255,255,255,.16);
-  box-shadow: 0 24px 70px rgba(0,0,0,.42);
-  backdrop-filter: blur(8px);
+
+.slide-scene, .photo-scene {
+  display: block;
+  text-align: left;
 }
-.title-card h2 {
-  font-family: "Yu Mincho", "游明朝", "Hiragino Mincho ProN", serif;
-  font-size: clamp(2.2rem, 6vw, 5.6rem);
-  letter-spacing: .08em;
-  text-shadow: 0 6px 28px rgba(0,0,0,.45);
-}
-.title-card h2 span { font-size: .72em; }
-.title-card p:last-child { color: var(--muted); font-weight: 800; font-size: clamp(1.05rem, 2vw, 1.4rem); }
-.songcard-scene {
-  background: radial-gradient(circle at 50% 35%, rgba(245,158,11,.16), transparent 34rem);
-}
-.school-song-card {
-  position: relative;
-  z-index: 4;
-  width: min(1080px, 96%);
-  height: min(610px, 78vh);
-  padding: clamp(22px, 3vw, 38px) clamp(26px, 4vw, 48px);
-  background: linear-gradient(180deg, #fffdf8, #fff7e8);
-  color: #171717;
-  border: clamp(10px, 1.3vw, 15px) solid #7a3f12;
-  box-shadow: inset 0 0 0 3px #c28a4a, inset 0 0 0 10px rgba(122,63,18,.08), 0 30px 85px rgba(0,0,0,.45);
-  display: grid;
-  grid-template-columns: auto auto auto 1fr;
-  grid-template-areas: "title name meta lyrics";
-  column-gap: clamp(18px, 3vw, 42px);
-  align-items: center;
-  animation: songCardIn 1.15s ease both;
-}
-.song-title, .song-name, .song-meta, .song-lyrics-vertical {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  font-family: "Yu Mincho", "游明朝", "Hiragino Mincho ProN", serif;
-  font-weight: 800;
-}
-.song-title { grid-area: title; font-size: clamp(2.2rem, 4vw, 3.4rem); letter-spacing: .22em; }
-.song-name { grid-area: name; display: flex; flex-direction: row-reverse; gap: 12px; font-size: clamp(1.55rem, 3vw, 2.55rem); line-height: 1.45; letter-spacing: .16em; }
-.song-meta { grid-area: meta; display: flex; flex-direction: row-reverse; gap: 24px; font-size: clamp(.86rem, 1.3vw, 1.1rem); line-height: 1.7; letter-spacing: .12em; }
-.song-lyrics-vertical {
-  grid-area: lyrics;
-  height: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-  gap: clamp(16px, 2.3vw, 30px);
-  align-items: flex-start;
-  justify-content: center;
-  font-size: clamp(.82rem, 1.38vw, 1.06rem);
-  line-height: 1.9;
-  letter-spacing: .08em;
-}
-.song-lyrics-vertical p { margin: 0; }
-@keyframes songCardIn { from { opacity: 0; transform: translateY(18px) scale(.985); filter: blur(4px); } to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); } }
-.slide-scene, .photo-scene { display: block; text-align: left; }
+
 .slide-header {
   position: relative;
   z-index: 3;
@@ -154,44 +116,69 @@ h1 { font-size: clamp(2.4rem, 8vw, 5.3rem); }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 20px;
-  transition: opacity .85s ease, transform .85s ease, filter .85s ease;
+  margin-bottom: clamp(12px, 1.7vw, 20px);
+  transition: opacity .7s ease, transform .7s ease, filter .7s ease;
 }
-.slide-header.is-fading { opacity: .28; transform: translateY(8px); filter: blur(5px); }
+
 .slide-header p { margin: 0; }
-#posterCounter, #photoCounter { color: var(--muted); font-weight: 800; }
+#posterCounter, #photoCounter { color: var(--muted); font-weight: 900; letter-spacing: .05em; }
+
 .image-grid {
   position: relative;
   z-index: 3;
-  display: grid;
-  gap: clamp(12px, 2vw, 24px);
-  height: calc(100% - 46px);
-  min-height: 520px;
-  transition: opacity .85s ease, transform .85s ease, filter .85s ease;
+  height: calc(100% - 44px);
+  min-height: 620px;
+  transition: opacity .7s ease, transform .7s ease, filter .7s ease;
 }
-.image-grid.three { grid-template-columns: repeat(3, 1fr); }
-.image-grid.is-fading, .photo-stage.is-fading { opacity: .08; transform: translateY(10px) scale(1.01); filter: blur(10px); }
+
+.image-grid.six {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: clamp(10px, 1.25vw, 18px);
+}
+
+.image-grid.is-fading, .photo-stage.is-fading {
+  opacity: .08;
+  transform: translateY(10px) scale(1.01);
+  filter: blur(9px);
+}
 
 .image-slot, .photo-slot {
   position: relative;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 22px;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-  border: 1px solid rgba(255,255,255,.14);
-  box-shadow: 0 18px 44px rgba(0,0,0,.32);
+    linear-gradient(180deg, rgba(255,250,235,.12), rgba(255,250,235,.035));
+  border: 1px solid rgba(241,215,159,.22);
+  box-shadow: 0 18px 44px rgba(0,0,0,.36);
   opacity: 0;
-  transform: translateY(18px) scale(.985);
-  animation: slotFadeIn .95s ease forwards;
+  transform: translateY(18px) scale(.985) rotate(var(--tilt, 0deg));
+  animation: slotFadeIn .82s ease forwards;
   animation-delay: var(--delay, 0s);
 }
 
 .image-slot {
-  aspect-ratio: 3 / 4;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(10px, 1.2vw, 14px);
+  padding: clamp(7px, .9vw, 12px);
+}
+
+.image-slot:nth-child(1) { grid-column: 1 / span 4; grid-row: 1 / span 3; --tilt: -.8deg; }
+.image-slot:nth-child(2) { grid-column: 5 / span 4; grid-row: 1 / span 2; --tilt: .5deg; }
+.image-slot:nth-child(3) { grid-column: 9 / span 4; grid-row: 1 / span 3; --tilt: .8deg; }
+.image-slot:nth-child(4) { grid-column: 1 / span 3; grid-row: 4 / span 3; --tilt: .7deg; }
+.image-slot:nth-child(5) { grid-column: 4 / span 5; grid-row: 3 / span 4; --tilt: -.4deg; }
+.image-slot:nth-child(6) { grid-column: 9 / span 4; grid-row: 4 / span 3; --tilt: -.6deg; }
+
+.image-slot::before, .photo-slot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.16), transparent 28%, transparent 74%, rgba(0,0,0,.18));
+  pointer-events: none;
+  z-index: 1;
 }
 
 .image-slot img {
@@ -199,21 +186,41 @@ h1 { font-size: clamp(2.4rem, 8vw, 5.3rem); }
   height: 100%;
   object-fit: contain;
   display: block;
-  border-radius: 16px;
-  background: rgba(255,255,255,.02);
-  box-shadow: 0 10px 26px rgba(0,0,0,.18);
+  border-radius: 14px;
+  background: rgba(255,255,255,.03);
+  box-shadow: 0 10px 26px rgba(0,0,0,.20);
   transform: scale(1.01);
-  animation: slowZoom 10s linear forwards;
+  animation: slowZoom 7s linear forwards;
+}
+
+.image-slot.missing, .photo-slot.missing {
+  display: grid;
+  place-items: center;
+  color: rgba(255,248,235,.66);
+  font-weight: 900;
+  line-height: 1.6;
+  text-align: center;
+  padding: 18px;
+  white-space: pre-line;
+}
+
+.photo-stage {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: calc(100% - 44px);
+  min-height: 620px;
+  display: grid;
+  place-items: center;
+  transition: opacity .7s ease, transform .7s ease, filter .7s ease;
 }
 
 .photo-slot {
-  width: min(1120px, 96%);
-  height: min(620px, 78vh);
+  width: min(1180px, 96%);
+  height: min(665px, 72vh);
+  aspect-ratio: 16 / 9;
   margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(12px, 1.3vw, 18px);
+  padding: clamp(10px, 1vw, 16px);
 }
 
 .photo-slot img {
@@ -222,41 +229,31 @@ h1 { font-size: clamp(2.4rem, 8vw, 5.3rem); }
   object-fit: cover;
   display: block;
   border-radius: 18px;
-  box-shadow: 0 10px 26px rgba(0,0,0,.18);
-  transform: scale(1.01);
-  animation: slowZoom 10s linear forwards;
+  box-shadow: 0 10px 26px rgba(0,0,0,.20);
+  animation: slowZoom 7s linear forwards;
 }
-.image-slot.missing, .photo-slot.missing { display: grid; place-items: center; color: rgba(255,255,255,.68); font-weight: 800; line-height: 1.6; text-align: center; padding: 18px; }
-.photo-stage {
-  position: relative;
-  z-index: 3;
-  width: 100%;
-  height: calc(100% - 46px);
-  min-height: 540px;
-  display: grid;
-  place-items: center;
-  transition: opacity .85s ease, transform .85s ease, filter .85s ease;
+
+@keyframes slowZoom {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.075); }
 }
-.photo-slot {
-  width: min(1120px, 96%);
-  height: min(630px, 72vh);
-  aspect-ratio: 16 / 9;
-  margin: 0 auto;
+
+@keyframes slotFadeIn {
+  from { opacity: 0; transform: translateY(18px) scale(.985) rotate(var(--tilt, 0deg)); }
+  to { opacity: 1; transform: translateY(0) scale(1) rotate(var(--tilt, 0deg)); }
 }
-.photo-slot img { object-fit: cover; }
-@keyframes slowZoom { from { transform: scale(1.02); } to { transform: scale(1.08); } }
-@keyframes slotFadeIn { from { opacity: 0; transform: translateY(18px) scale(.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
 .lyric-overlay {
   position: absolute;
   left: 50%;
-  bottom: clamp(18px, 4vw, 34px);
+  bottom: clamp(14px, 3vw, 28px);
   z-index: 8;
   width: min(980px, calc(100% - 36px));
-  padding: 13px 22px;
+  padding: 12px 22px;
   border-radius: 999px;
-  background: rgba(0, 0, 0, .58);
-  border: 1px solid rgba(255, 255, 255, .22);
-  box-shadow: 0 18px 48px rgba(0,0,0,.36);
+  background: rgba(10, 7, 5, .68);
+  border: 1px solid rgba(241, 215, 159, .34);
+  box-shadow: 0 18px 48px rgba(0,0,0,.42);
   backdrop-filter: blur(10px);
   transform: translate(-50%, 14px);
   opacity: 0;
@@ -264,105 +261,56 @@ h1 { font-size: clamp(2.4rem, 8vw, 5.3rem); }
   transition: opacity .42s ease, transform .42s ease;
   pointer-events: none;
 }
+
 .lyric-overlay.show { opacity: 1; transform: translate(-50%, 0); }
 .lyric-overlay[hidden] { display: none; }
-.lyric-overlay span { display: block; color: #fff7ed; font-size: clamp(1.08rem, 2.3vw, 1.8rem); line-height: 1.5; font-weight: 900; letter-spacing: .04em; text-shadow: 0 2px 12px rgba(0,0,0,.75); }
-.fin-scene h2 { font-family: Georgia, "Times New Roman", serif; font-size: clamp(4rem, 13vw, 10rem); font-weight: 500; letter-spacing: .08em; text-shadow: 0 8px 34px rgba(0,0,0,.5); }
-.fin-scene p { margin: 10px 0 0; font-size: clamp(1.1rem, 2.2vw, 1.55rem); font-weight: 700; }
-.back-link { display: inline-flex; margin-top: 28px; padding: 11px 20px; border: 1px solid rgba(255,255,255,.35); border-radius: 999px; color: var(--text); text-decoration: none; font-weight: 800; }
-@media (max-width: 800px) {
+.lyric-overlay span {
+  display: block;
+  color: #fff8eb;
+  font-size: clamp(1.02rem, 2.1vw, 1.68rem);
+  line-height: 1.5;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-shadow: 0 2px 12px rgba(0,0,0,.75);
+}
+
+.fin-scene h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(4rem, 13vw, 10rem);
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-shadow: 0 8px 34px rgba(0,0,0,.5);
+}
+
+.fin-scene p {
+  margin: 10px 0 0;
+  font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+  font-weight: 700;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-top: 28px;
+  padding: 11px 20px;
+  border: 1px solid rgba(255,255,255,.35);
+  border-radius: 999px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
   .stage { min-height: 88vh; }
-  .image-grid.three { grid-template-columns: 1fr; min-height: auto; height: auto; }
-  .image-slot { min-height: 28vh; }
-  .photo-stage { min-height: 60vh; }
   .slide-scene, .photo-scene { overflow: auto; }
-  .school-song-card { height: min(680px, 86vh); grid-template-columns: auto auto 1fr; grid-template-areas: "title name lyrics" "meta meta lyrics"; column-gap: 18px; padding: 22px; }
-  .song-meta { font-size: .78rem; gap: 12px; }
-  .song-lyrics-vertical { font-size: .72rem; gap: 12px; line-height: 1.7; }
-}
-
-
-/* v23: 歌詞カードはCSS縦書きではなく、画像をそのまま表示する */
-.school-song-card.image-card {
-  width: min(1120px, 94%);
-  height: min(630px, 78vh);
-  padding: 0;
-  background: transparent;
-  border: 0;
-  box-shadow: 0 30px 90px rgba(0,0,0,.42);
-  display: grid;
-  place-items: center;
-  animation: songCardIn 1.15s ease both;
-}
-.school-song-card.image-card[hidden] {
-  display: none;
-}
-.school-song-card.image-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  border-radius: 6px;
-}
-@media (max-width: 800px) {
-  .school-song-card.image-card {
-    width: 96%;
-    height: min(64vh, 520px);
-    padding: 0;
+  .image-grid { min-height: auto; height: auto; }
+  .image-grid.six {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
   }
-}
-
-
-/* v24: 17〜32秒の歌詞カードは画像ファイルをそのまま表示する */
-.songcard-scene {
-  padding: clamp(18px, 3vw, 42px);
-}
-
-.school-song-card-img {
-  position: relative;
-  z-index: 4;
-  display: block;
-  width: min(1140px, 94%);
-  height: min(640px, 80vh);
-  object-fit: contain;
-  margin: 0 auto;
-  border-radius: 6px;
-  box-shadow: 0 30px 90px rgba(0,0,0,.42);
-  animation: songCardIn 1.15s ease both;
-}
-
-@media (max-width: 800px) {
-  .school-song-card-img {
-    width: 96%;
-    height: min(64vh, 520px);
+  .image-slot:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+    min-height: 34vh;
   }
-}
-
-
-/* v25: 歌詞カード画像のはみ出し防止。親ステージ内に必ず収める */
-.songcard-scene {
-  overflow: hidden;
-  padding: clamp(18px, 3vw, 42px) !important;
-}
-
-.school-song-card-img {
-  position: relative;
-  z-index: 4;
-  display: block;
-  width: auto !important;
-  height: auto !important;
-  max-width: calc(100% - 48px) !important;
-  max-height: calc(100% - 48px) !important;
-  object-fit: contain !important;
-  margin: 0 auto;
-  border-radius: 6px;
-  box-shadow: 0 30px 90px rgba(0,0,0,.42);
-  animation: songCardIn 1.15s ease both;
-}
-
-@media (max-width: 800px) {
-  .school-song-card-img {
-    max-width: calc(100% - 18px) !important;
-    max-height: calc(100% - 18px) !important;
-  }
+  .photo-stage { min-height: 60vh; }
 }
