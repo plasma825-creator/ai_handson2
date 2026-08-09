@@ -2,6 +2,10 @@ const startPanel = document.getElementById('startPanel');
 const stage = document.getElementById('stage');
 const startButton = document.getElementById('startButton');
 const audio = document.getElementById('endingAudio');
+const afterAudio = new Audio('ending/ending_instrumental.mp3');
+afterAudio.volume = 0.7;
+afterAudio.preload = 'auto';
+afterAudio.loop = false;
 
 const posterScene = document.getElementById('posterScene');
 const photoScene = document.getElementById('photoScene');
@@ -46,6 +50,7 @@ const lyrics = [
 let currentLyricIndex = -1;
 let lyricRafId = null;
 let scheduledTimers = [];
+let afterAudioStarted = false;
 
 function makePaths(folder, count) {
   return Array.from({ length: count }, (_, index) => {
@@ -196,8 +201,28 @@ function stopLyrics() {
   }, 450);
 }
 
+function resetAfterAudio() {
+  afterAudioStarted = false;
+  if (afterAudio) {
+    afterAudio.pause();
+    afterAudio.currentTime = 0;
+    afterAudio.volume = 0.7;
+  }
+}
+
+function startAfterAudio() {
+  if (!afterAudio || afterAudioStarted) return;
+  afterAudioStarted = true;
+  afterAudio.volume = 0.7;
+  afterAudio.currentTime = 0;
+  afterAudio.play().catch((error) => {
+    console.warn('After audio playback failed:', error);
+  });
+}
+
 function scheduleEnding() {
   clearTimers();
+  resetAfterAudio();
 
   showScene(posterScene);
   renderPosterSlide(0);
@@ -228,8 +253,14 @@ function scheduleEnding() {
   setTimer(() => {
     stopLyrics();
     if (!audio.paused) audio.pause();
+    startAfterAudio();
   }, AUDIO_STOP_MS + 800);
 }
+
+audio.addEventListener('ended', () => {
+  stopLyrics();
+  startAfterAudio();
+});
 
 startButton.addEventListener('click', async () => {
   startPanel.hidden = true;
