@@ -2,11 +2,9 @@ const startPanel = document.getElementById('startPanel');
 const stage = document.getElementById('stage');
 const startButton = document.getElementById('startButton');
 const audio = document.getElementById('endingAudio');
-const afterAudio = new Audio('ending/ending_instrumental.mp3');
-afterAudio.volume = 0.7;
-afterAudio.preload = 'auto';
-afterAudio.loop = false;
 
+const titleScene = document.getElementById('titleScene');
+const songCardScene = document.getElementById('songCardScene');
 const posterScene = document.getElementById('posterScene');
 const photoScene = document.getElementById('photoScene');
 const finScene = document.getElementById('finScene');
@@ -19,38 +17,42 @@ const photoCounter = document.getElementById('photoCounter');
 const lyricOverlay = document.getElementById('lyricOverlay');
 const lyricLine = document.getElementById('lyricLine');
 
-const FADE_MS = 700;
-const POSTER_COUNT = 30;
-const PHOTO_COUNT = 3;
-const POSTER_GROUP_SIZE = 6;
+const TITLE_AT_MS = 0;
+const SONG_CARD_AT_MS = 17000;
+const POSTER_AT_MS = 32000;
+const PHOTO_AT_MS = 130000;
+const FIN_AT_MS = 154000;
+const AUDIO_STOP_MS = 168000;
+const FADE_MS = 850;
 
-const posterSwitchTimes = [0, 6, 12, 18, 24];
-const photoSwitchTimes = [30, 36, 42];
-const FIN_AT_MS = 48000;
-const AUDIO_STOP_MS = 52000;
+const POSTER_COUNT = 33;
+const PHOTO_COUNT = 3;
+const POSTER_GROUP_SIZE = 3;
+
+const posterSwitchTimes = [32, 40, 48, 56, 64, 71, 80, 88, 98, 106, 114];
+const photoSwitchTimes = [130, 137, 146];
 
 const lyrics = [
   { time: 0.0, text: '' },
-  { time: 1.2, text: '旭台に　朝ひらけ' },
-  { time: 4.2, text: '白き峰より　風は来る' },
-  { time: 8.5, text: '酪農の野に　牛は立ち' },
-  { time: 12.0, text: '学びの鐘は　今日も鳴る' },
-  { time: 16.5, text: '重き日々にも　灯をかかげ' },
-  { time: 20.0, text: '知恵をたずねて　道を行く' },
-  { time: 24.0, text: '過ぎしカコクを　越えながら' },
-  { time: 27.0, text: '明日の丘へ　歩み出す' },
-  { time: 31.0, text: 'ああ　金沢国際酪農大学　旭台キャンパス' },
-  { time: 37.0, text: 'われらは進む　ラク大へ' },
-  { time: 40.0, text: 'ラク大へ　いま一歩' },
-  { time: 42.0, text: 'ラク大へ　いま一歩' },
-  { time: 44.0, text: 'ラク大へ　いま一歩' },
-  { time: 51.0, text: '' }
+  { time: 32.0, text: '旭台に　朝ひらけ' },
+  { time: 40.0, text: '白き峰より　風は来る' },
+  { time: 48.0, text: '酪農の野に　牛は立ち' },
+  { time: 56.0, text: '学びの鐘は　今日も鳴る' },
+  { time: 64.0, text: '重き日々にも　灯をかかげ' },
+  { time: 71.0, text: '知恵をたずねて　道を行く' },
+  { time: 80.0, text: '過ぎしカコクを　越えながら' },
+  { time: 88.0, text: '明日の丘へ　歩み出す' },
+  { time: 98.0, text: 'ああ　金沢国際酪農大学' },
+  { time: 106.0, text: '旭台キャンパス' },
+  { time: 114.0, text: 'われらは進む　ラク大へ' },
+  { time: 130.0, text: 'ラク大へ　いま一歩' },
+  { time: 137.0, text: 'ラク大へ　いま一歩' },
+  { time: 146.0, text: 'ラク大へ　いま一歩' },
+  { time: 159.0, text: '' }
 ];
 
 let currentLyricIndex = -1;
 let lyricRafId = null;
-let scheduledTimers = [];
-let afterAudioStarted = false;
 
 function makePaths(folder, count) {
   return Array.from({ length: count }, (_, index) => {
@@ -67,19 +69,8 @@ for (let i = 0; i < posterPaths.length; i += POSTER_GROUP_SIZE) {
   posterSlides.push(posterPaths.slice(i, i + POSTER_GROUP_SIZE));
 }
 
-function setTimer(callback, delay) {
-  const id = setTimeout(callback, delay);
-  scheduledTimers.push(id);
-  return id;
-}
-
-function clearTimers() {
-  scheduledTimers.forEach(clearTimeout);
-  scheduledTimers = [];
-}
-
 function showScene(scene) {
-  [posterScene, photoScene, finScene].forEach(item => {
+  [titleScene, songCardScene, posterScene, photoScene, finScene].forEach(item => {
     item.classList.remove('active');
     if (item !== scene) item.hidden = true;
   });
@@ -90,7 +81,8 @@ function showScene(scene) {
 
 function addMissingMessage(container, path) {
   container.classList.add('missing');
-  container.textContent = `${path}\n画像を配置してください`;
+  container.textContent = `${path}
+画像を配置してください`;
 }
 
 function renderPosterSlide(index) {
@@ -101,7 +93,7 @@ function renderPosterSlide(index) {
   paths.forEach((path, slotIndex) => {
     const slot = document.createElement('div');
     slot.className = 'image-slot';
-    slot.style.setProperty('--delay', `${slotIndex * 0.08}s`);
+    slot.style.setProperty('--delay', `${slotIndex * 0.12}s`);
 
     const img = document.createElement('img');
     img.src = path;
@@ -138,6 +130,7 @@ function renderPhoto(index) {
 
 function fadeAndRun(target, callback) {
   target.classList.add('is-fading');
+
   setTimeout(() => {
     callback();
     requestAnimationFrame(() => target.classList.remove('is-fading'));
@@ -163,18 +156,21 @@ function updateLyrics() {
 
     setTimeout(() => {
       const nextText = lyrics[currentLyricIndex].text;
+
       if (nextText === '') {
         lyricOverlay.classList.remove('show');
         lyricLine.textContent = '';
         setTimeout(() => {
-          if (lyrics[currentLyricIndex].text === '') lyricOverlay.hidden = true;
+          if (lyrics[currentLyricIndex].text === '') {
+            lyricOverlay.hidden = true;
+          }
         }, 450);
       } else {
         lyricOverlay.hidden = false;
         lyricLine.textContent = nextText;
         lyricOverlay.classList.add('show');
       }
-    }, 90);
+    }, 120);
   }
 
   lyricRafId = requestAnimationFrame(updateLyrics);
@@ -182,7 +178,9 @@ function updateLyrics() {
 
 function startLyrics() {
   currentLyricIndex = -1;
+
   if (lyricRafId) cancelAnimationFrame(lyricRafId);
+
   lyricLine.textContent = '';
   lyricOverlay.hidden = true;
   lyricOverlay.classList.remove('show');
@@ -194,6 +192,7 @@ function stopLyrics() {
     cancelAnimationFrame(lyricRafId);
     lyricRafId = null;
   }
+
   lyricOverlay.classList.remove('show');
   setTimeout(() => {
     lyricOverlay.hidden = true;
@@ -201,66 +200,46 @@ function stopLyrics() {
   }, 450);
 }
 
-function resetAfterAudio() {
-  afterAudioStarted = false;
-  if (afterAudio) {
-    afterAudio.pause();
-    afterAudio.currentTime = 0;
-    afterAudio.volume = 0.7;
-  }
-}
-
-function startAfterAudio() {
-  if (!afterAudio || afterAudioStarted) return;
-  afterAudioStarted = true;
-  afterAudio.volume = 0.7;
-  afterAudio.currentTime = 0;
-  afterAudio.play().catch((error) => {
-    console.warn('After audio playback failed:', error);
-  });
-}
-
 function scheduleEnding() {
-  clearTimers();
-  resetAfterAudio();
+  showScene(titleScene);
 
-  showScene(posterScene);
-  renderPosterSlide(0);
+  setTimeout(() => showScene(songCardScene), SONG_CARD_AT_MS);
+
+  setTimeout(() => {
+    showScene(posterScene);
+    renderPosterSlide(0);
+  }, POSTER_AT_MS);
 
   posterSwitchTimes.forEach((time, index) => {
     if (index === 0) return;
-    setTimer(() => {
+    setTimeout(() => {
       showScene(posterScene);
       fadeAndRun(posterGrid, () => renderPosterSlide(index));
     }, time * 1000);
   });
 
+  setTimeout(() => {
+    showScene(photoScene);
+    renderPhoto(0);
+  }, PHOTO_AT_MS);
+
   photoSwitchTimes.forEach((time, index) => {
-    setTimer(() => {
+    if (index === 0) return;
+    setTimeout(() => {
       showScene(photoScene);
-      if (index === 0) {
-        renderPhoto(index);
-      } else {
-        fadeAndRun(photoStage, () => renderPhoto(index));
-      }
+      fadeAndRun(photoStage, () => renderPhoto(index));
     }, time * 1000);
   });
 
-  setTimer(() => {
+  setTimeout(() => {
     showScene(finScene);
   }, FIN_AT_MS);
 
-  setTimer(() => {
+  setTimeout(() => {
     stopLyrics();
     if (!audio.paused) audio.pause();
-    startAfterAudio();
   }, AUDIO_STOP_MS + 800);
 }
-
-audio.addEventListener('ended', () => {
-  stopLyrics();
-  startAfterAudio();
-});
 
 startButton.addEventListener('click', async () => {
   startPanel.hidden = true;
